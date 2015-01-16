@@ -1,0 +1,874 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<link rel="stylesheet" href="css/custom.css">
+
+		<link rel="stylesheet" href="css/fullscreen-img.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<!------------------------------------------------------------------------------------------------------------------------>
+<!-- Start Slides Section 																								-->
+<!------------------------------------------------------------------------------------------------------------------------>
+				<section fullscreen-img="img/snowing.gif">
+					<div class="fullscreen" style="border-radius: 25px;">
+						<h1>Grunt</h1>
+						<h3>Tec Talk (12. Januar 2015)</h3>
+						<p>
+					<!--		TODO Logoleiste Twitter, Jekyll, Delicious, etc. wie bei eigenem Blog -->
+							<small>by <a href="https://intranet.netpioneer.de/display/~sweber">Sebastian Weber</a> / <a href="http://twitter.com/doppelmutzi">@doppelmutzi</a>
+							</small>
+						</p>	
+					</div>				
+				</section>
+				
+
+	<!--			<section class="agenda">
+					<h2>Was darfs denn sein?</h2>
+					<div style="background-color: #3481E0;"><strong>Introduction</strong> - Was ist Grunt?</div>
+					<div style="background-color: #E08B34;"><strong>Real World Use Cases</strong> - Wofür ist Grunt einsetzbar?</div>
+					<div style="background-color: white; color: black;"><strong>Grunt in Action</strong> - Wie ist ein Grunt-Projekt aufgebaut?</div>
+					<div style="background-color: #24E09A;"><strong>Advanced Grunt</strong> - Wie kann ein Entwicklungsprojekt aussetzen?</div>	
+				</section> -->
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<!-- Was ist Grunt 																										-->
+<!------------------------------------------------------------------------------------------------------------------------>
+				<section>
+					<section>
+						<h1>Was ist Grunt?</h1>
+					</section>
+					<section>
+						<h2>Der Javascript Task Runner</h2>
+						<h3><a href="http://gruntjs.com/">http://gruntjs.com/</a>
+					</section>
+					<section>
+						<h2>basiert vollständig auf JavaScript</h2>
+					</section>
+					<section>
+						<h2>Hauptfokus liegt auf Automatisierung</h2>
+					</section>
+					<section>
+						<h2>Stetig wachsendes Ökosystem durch Plugins</h2>
+					</section>
+					<section data-background="white" class="light-bg">
+						<h2>Wie üblich fancy Logo</h2>
+						<img src="img/grunt-logo.png"/>
+					</section>	
+						
+					<section fullscreen-img="img/ryu.gif" fullscreen-size="contain">
+						<h2 class="fullscreen">Existiert gesunde Konkurrenz</h2>						
+					</section>			
+					<section data-background="#CF4646">
+						<img src="img/gulp-white-text.svg" width="350"/>						
+					</section>
+					<section fullscreen-img="img/mortal-kombat2.gif">
+						<h2 class="fullscreen">Friedliche Koexistenz</h2>
+					</section>
+					<section>
+						<h2>Initial reines Build-Tool</h2>
+						<ul>
+							<li>Ben Alman (<a href="http://benalman.com/news/2012/03/introducing-grunt/">Blog-Artikel</a>)</li>
+							<li>veröffentlicht im März 2012</li>
+							<li>Ursprünglicher Kontext: Task-basiertes Kommandozeilenwerkzeug für Javascript-Projekte</li>
+						</ul>
+					</section>	
+					<section>
+						<h2>Und inzwischen?</h2>
+						<ul>
+							<li>Javascript Task Runner</li>
+							<li>Automatisierung von Softwareentwicklungs-Tasks</li>
+							<ul>
+								<li>Minify Javascript</li>
+								<li>Testautomatisierung</li>
+								<li>...</li>
+							</ul>
+							<li>Verwendung als Build-Tool</li>
+							<ul>
+								<li>Überführen Sass nach CSS</li>
+								<li>...</li>
+							</ul>
+						</ul>
+					</section>						
+				</section>
+<!------------------------------------------------------------------------------------------------------------------------>
+<!-- Grunt und Node.js																									-->
+<!------------------------------------------------------------------------------------------------------------------------>
+				<section>
+					<section>
+						<h1>Wie hängt Grunt mit Node zusammen?</h1>
+					</section>
+					<section>
+						<h2>Node.js</h2>
+						<h3><a href="http://nodejs.org/">Plattform</a> zur Entwicklung von Javascript command-line Tools</h3>
+						<img src="img/nodejs.svg" width="350"/>
+					</section>
+					<section>
+						<h2>Grunt</h2>
+						<h3>Ist ein solches command-line Tool</h3>
+					</section>
+					<section>
+						<h2>Grunt Läuft dank Node auf allen gängigen Plattformen</h2>
+					</section>
+					<section>
+						<h2>Bestandteile von Grunt werden via <a href="https://www.npmjs.com/">npm</a> installiert</h2>
+						<img src="img/npm-logo.svg" width="350"/>
+					</section>
+					<section>
+						<h2>Bestandteile von Grunt I</h2>
+						<h3>npm Modul <a href="http://gruntjs.com/getting-started">grunt</a></h3>
+						<ul>
+							<li>beinhaltet Grunt-Logik um Tasks auszuführen, Grunt-Plugins zu laden, usw.</li>
+							<li>Wird lokal zum Entwicklungsprojekt installiert</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Bestandteile von Grunt II</h2>
+						<h3>npm Modul <a href="http://gruntjs.com/getting-started#installing-the-cli">grunt-cli</a></h3>
+						<ul>
+							<li>wird global im System installiert</li>
+							<li>fügt lediglich den <strong>grunt</strong> Befehl in den Systempfad hinzu</li>
+						</ul>
+					</section>
+					<section data-background="white" class="light-bg">
+						<h2>Bestandteile von Grunt III</h2>
+						<h3>nmp Modul <a href="http://gruntjs.com/project-scaffolding">grunt-init</a></h3>
+						<ul>
+							<li>Project scaffolding tool</li>
+							<li>Generieren von boilerplate Projekten für schnellen Einstieg</li>
+							<li>Soll durch Node.js command-line Tool <a href="http://yeoman.io/">Yeoman</a> ersetzt werden</li>
+						</ul>
+						<img src="img/yeoman-logo.png"/>
+					</section>
+				</section>
+<!------------------------------------------------------------------------------------------------------------------------>
+<!-- Start Use Case Linting 																							-->
+<!------------------------------------------------------------------------------------------------------------------------>
+				<section>
+					<section>
+						<h1>(Mini) Use Case Linting</h1>
+					</section>
+					<section>
+						<h2>Statische Code-Analyse von Javascript-Code</h2>
+					</section>
+					<section>
+						<h2>Grunt CLI global installieren</h2>
+						<pre style="background:#fdf6e3;color:#586e75">$ npm install -g grunt-cli
+						</pre>
+					</section>
+					<section>
+						<h2>Zwei Dateien werden benötigt</h2>
+						<ul>
+							<li>Gruntfile.js</li>
+							<li>package.json</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Initial package.json anlegen</h2>
+						<pre style="background:#fdf6e3;color:#586e75"><span style="color:#268bd2">{</span>
+  <span style="color:#269186"><span style="color:#c60000">"</span>name<span style="color:#c60000">"</span></span>: <span style="color:#269186"><span style="color:#c60000">"</span>example linting<span style="color:#c60000">"</span></span>,
+  <span style="color:#269186"><span style="color:#c60000">"</span>version<span style="color:#c60000">"</span></span>: <span style="color:#269186"><span style="color:#c60000">"</span>0.1.0<span style="color:#c60000">"</span></span>,
+  <span style="color:#269186"><span style="color:#c60000">"</span>author<span style="color:#c60000">"</span></span>: <span style="color:#269186"><span style="color:#c60000">"</span>Sebastian Weber<span style="color:#c60000">"</span></span>
+<span style="color:#268bd2">}</span>
+</pre>
+					</section>
+					<section>
+						<h2>Dependencies installieren</h2>
+						<ul>
+							<li>Den eigentlichen Task Runner (npm Modul) als development dependency hinzufügen</li>
+							<li>D.h. <strong>grunt</strong> in <strong>package.json</strong> aufnehmen</li>
+							<li>Hinzufügen von Grunt Plugin <a href="https://github.com/gruntjs/grunt-contrib-jshint">JShint</a></li>
+							<li>Muss nicht händisch erfolgen</li>
+						</ul>
+						<pre style="background:#fdf6e3;color:#586e75">$ npm install grunt --save-dev
+$ npm install grunt-contrib-jshint --save-dev
+</pre>
+					</section>
+					<section>
+						<h2>package.json mit Dependencies</h2>
+						<pre style="background:#fdf6e3;color:#586e75"><span style="color:#268bd2">{</span>
+  <span style="color:#269186"><span style="color:#c60000">"</span>name<span style="color:#c60000">"</span></span>: <span style="color:#269186"><span style="color:#c60000">"</span>example linting<span style="color:#c60000">"</span></span>,
+  <span style="color:#269186"><span style="color:#c60000">"</span>version<span style="color:#c60000">"</span></span>: <span style="color:#269186"><span style="color:#c60000">"</span>0.1.0<span style="color:#c60000">"</span></span>,
+  <span style="color:#269186"><span style="color:#c60000">"</span>author<span style="color:#c60000">"</span></span>: <span style="color:#269186"><span style="color:#c60000">"</span>Sebastian Weber<span style="color:#c60000">"</span></span>,
+  <span style="color:#269186"><span style="color:#c60000">"</span>devDependencies<span style="color:#c60000">"</span></span>: <span style="color:#268bd2">{</span>
+    <span style="color:#269186"><span style="color:#c60000">"</span>grunt<span style="color:#c60000">"</span></span>: <span style="color:#269186"><span style="color:#c60000">"</span>~0.4.1<span style="color:#c60000">"</span></span>,
+    <span style="color:#269186"><span style="color:#c60000">"</span>grunt-contrib-jshint<span style="color:#c60000">"</span></span>: <span style="color:#269186"><span style="color:#c60000">"</span>~0.6.0<span style="color:#c60000">"</span></span>
+  <span style="color:#268bd2">}</span>
+<span style="color:#268bd2">}</span>
+</pre>
+					</section>
+					<section>
+						<h2>Gruntfile (Gruntfile.js)</h2>
+						<pre style="background:#fdf6e3;color:#586e75"><span style="color:#a57800"><span style="color:#859900">module</span>.<span style="color:#a57800">exports</span> <span style="color:#859900">=</span> <span style="color:#268bd2">function</span>(grunt)</span> <span style="color:#268bd2">{</span>
+
+	  <span style="color:#93a1a1">// Load the plugin that provides the "jshint" task.</span>
+	  grunt.loadNpmTasks<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>grunt-contrib-jshint<span style="color:#c60000">'</span></span><span style="color:#93a1a1">)</span>;
+
+	  <span style="color:#93a1a1">// Project configuration.</span>
+	  grunt.initConfig<span style="color:#93a1a1">(</span><span style="color:#268bd2">{</span>
+	    jshint: <span style="color:#268bd2">{</span>
+	      options: <span style="color:#268bd2">{</span>
+	        curly: <span style="color:#b58900">true</span>,
+	        eqeqeq: <span style="color:#b58900">true</span>
+	      <span style="color:#268bd2">}</span>,
+	      target1: <span style="color:#268bd2">[</span><span style="color:#269186"><span style="color:#c60000">'</span>Gruntfile.js<span style="color:#c60000">'</span></span>, <span style="color:#269186"><span style="color:#c60000">'</span>src/**/*.js<span style="color:#c60000">'</span></span><span style="color:#268bd2">]</span>
+	    <span style="color:#268bd2">}</span>
+	  <span style="color:#268bd2">}</span><span style="color:#93a1a1">)</span>;
+
+	  <span style="color:#93a1a1">// Define the default task</span>
+	  grunt.registerTask<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>default<span style="color:#c60000">'</span></span>, <span style="color:#268bd2">[</span><span style="color:#269186"><span style="color:#c60000">'</span>jshint<span style="color:#c60000">'</span></span><span style="color:#268bd2">]</span><span style="color:#93a1a1">)</span>;
+
+	<span style="color:#268bd2">}</span>;
+
+	</pre>
+
+					</section>
+					
+					<section>
+						<h2>Bibliotheken werden nicht ausgeliefert</h2>
+						<pre style="background:#fdf6e3;color:#586e75">sweber@gorad:<span style="color:#859900">~</span>/dev/gswg-examples/1/04-linting$ ls
+Gruntfile.js  package.json  src
+</pre>
+
+<pre style="background:#fdf6e3;color:#586e75">sweber@gorad:<span style="color:#859900">~</span>/dev/gswg-examples/1/04-linting$ grunt
+<span style="color:#859900">>></span> Local Npm module <span style="color:#269186"><span style="color:#748b00">"</span>grunt-contrib-jshint<span style="color:#748b00">"</span></span> not found. Is it installed<span style="color:#859900">?</span>
+Warning: Task <span style="color:#269186"><span style="color:#748b00">"</span>jshint<span style="color:#748b00">"</span></span> not found. Use --force to <span style="color:#859900">continue</span>.
+
+Aborted due to warnings.
+
+</pre>
+					</section>
+					<section>
+						<h2>Bibliotheken installieren</h2>
+						<pre style="background:#fdf6e3;color:#586e75">$ npm install
+</pre>
+						<pre style="background:#fdf6e3;color:#586e75">sweber@gorad:<span style="color:#859900">~</span>/dev/gswg-examples/1/04-linting$ npm install
+npm WARN package.json gswg-1-04-linting@0.1.0 No description
+npm WARN package.json gswg-1-04-linting@0.1.0 No README data
+grunt@0.4.5 node_modules/grunt
+├── which@1.0.8
+├── dateformat@1.0.2-1.2.3
+├── eventemitter2@0.4.14
+├── getobject@0.1.0
+├── rimraf@2.2.8
+├── colors@0.6.2
+├── async@0.1.22
+├── hooker@0.2.3
+├── grunt-legacy-util@0.2.0
+├── <span style="color:#748b00">exit</span>@0.1.2
+├── lodash@0.9.2
+├── coffee-script@1.3.3
+├── underscore.string@2.2.1
+├── iconv-lite@0.2.11
+├── nopt@1.0.10 (abbrev@1.0.5)
+├── grunt-legacy-log@0.1.1 (underscore.string@2.3.3, lodash@2.4.1)
+├── minimatch@0.2.14 (sigmund@1.0.0, lru-cache@2.5.0)
+├── glob@3.1.21 (inherits@1.0.0, graceful-fs@1.2.3)
+├── findup-sync@0.1.3 (lodash@2.4.1, glob@3.2.11)
+└── js-yaml@2.0.5 (argparse@0.1.16, esprima@1.0.4)
+
+grunt-contrib-jshint@0.6.5 node_modules/grunt-contrib-jshint
+└── jshint@2.1.11 (console-browserify@0.1.6, underscore@1.4.4, shelljs@0.1.4, minimatch@0.4.0, cli@0.4.5)
+
+</pre>
+					</section>
+					<section>
+						<h2>Struktur nach Initialisierung</h2>
+						<pre style="background:#fdf6e3;color:#586e75">sweber@gorad:<span style="color:#859900">~</span>/dev/gswg-examples/1/04-linting$ ls
+Gruntfile.js  node_modules  package.json  src</pre>
+<pre style="background:#fdf6e3;color:#586e75">sweber@gorad:<span style="color:#859900">~</span>/dev/gswg-examples/1/04-linting$ ls node_modules/
+grunt  grunt-contrib-jshint
+
+</pre>
+					</section>
+					<section>
+						<h2>Grunt Task in Action</h2>
+						<pre style="background:#fdf6e3;color:#586e75">sweber@gorad:<span style="color:#859900">~</span>/dev/gswg-examples/1/04-linting$ grunt
+Running <span style="color:#269186"><span style="color:#748b00">"</span>jshint:target1<span style="color:#748b00">"</span></span> (jshint) task
+Linting src/foo.js ...ERROR
+[L1:C6] W116: Expected <span style="color:#269186"><span style="color:#748b00">'</span>===<span style="color:#748b00">'</span></span> and instead saw <span style="color:#269186"><span style="color:#748b00">'</span>==<span style="color:#748b00">'</span></span>.
+<span style="color:#859900">if</span>(7 == <span style="color:#269186"><span style="color:#748b00">"</span>7<span style="color:#748b00">"</span></span>) alert(42)<span style="color:#859900">;</span>
+Linting src/foo.js ...ERROR
+[L1:C14] W116: Expected <span style="color:#269186"><span style="color:#748b00">'</span>{<span style="color:#748b00">'</span></span> and instead saw <span style="color:#269186"><span style="color:#748b00">'</span>alert<span style="color:#748b00">'</span></span>.
+<span style="color:#859900">if</span>(7 == <span style="color:#269186"><span style="color:#748b00">"</span>7<span style="color:#748b00">"</span></span>) alert(42)<span style="color:#859900">;</span>
+
+Warning: Task <span style="color:#269186"><span style="color:#748b00">"</span>jshint:target1<span style="color:#748b00">"</span></span> failed. Use --force to <span style="color:#859900">continue</span>.
+
+Aborted due to warnings.
+
+</pre>
+					</section>					
+				</section>
+<!------------------------------------------------------------------------------------------------------------------------>
+<!-- Gruntfile.js																							-->
+<!------------------------------------------------------------------------------------------------------------------------>
+				<section>	
+					<section>
+						<h1>Wie funktioniert das Gruntfile?</h1>
+					</section>
+					<section>
+						<h2>Reminder Gruntfile</h2>
+						<pre style="background:#fdf6e3;color:#586e75"><span style="color:#a57800"><span style="color:#859900">module</span>.<span style="color:#a57800">exports</span> <span style="color:#859900">=</span> <span style="color:#268bd2">function</span>(grunt)</span> <span style="color:#268bd2">{</span>
+
+	  <span style="color:#93a1a1">// Load the plugin that provides the "jshint" task.</span>
+	  grunt.loadNpmTasks<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>grunt-contrib-jshint<span style="color:#c60000">'</span></span><span style="color:#93a1a1">)</span>;
+
+	  <span style="color:#93a1a1">// Project configuration.</span>
+	  grunt.initConfig<span style="color:#93a1a1">(</span><span style="color:#268bd2">{</span>
+	    jshint: <span style="color:#268bd2">{</span>
+	      options: <span style="color:#268bd2">{</span>
+	        curly: <span style="color:#b58900">true</span>,
+	        eqeqeq: <span style="color:#b58900">true</span>
+	      <span style="color:#268bd2">}</span>,
+	      target1: <span style="color:#268bd2">[</span><span style="color:#269186"><span style="color:#c60000">'</span>Gruntfile.js<span style="color:#c60000">'</span></span>, <span style="color:#269186"><span style="color:#c60000">'</span>src/**/*.js<span style="color:#c60000">'</span></span><span style="color:#268bd2">]</span>
+	    <span style="color:#268bd2">}</span>
+	  <span style="color:#268bd2">}</span><span style="color:#93a1a1">)</span>;
+
+	  <span style="color:#93a1a1">// Define the default task</span>
+	  grunt.registerTask<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>default<span style="color:#c60000">'</span></span>, <span style="color:#268bd2">[</span><span style="color:#269186"><span style="color:#c60000">'</span>jshint<span style="color:#c60000">'</span></span><span style="color:#268bd2">]</span><span style="color:#93a1a1">)</span>;
+
+	<span style="color:#268bd2">}</span>;
+
+	</pre>
+
+					</section>
+					<section>
+						<h2>Grunt Wrapper</h2>
+						<pre style="background:#fdf6e3;color:#586e75"><span style="color:#a57800"><span style="color:#859900">module</span>.<span style="color:#a57800">exports</span> <span style="color:#859900">=</span> <span style="color:#268bd2">function</span>(grunt)</span> <span style="color:#268bd2">{</span>
+    <span style="color:#93a1a1">// Grunt-related things go here</span>
+<span style="color:#268bd2">}</span>
+</pre>
+						<ul>
+							<li>Umhüllt eigentliche Grunt-Konfiguration</li>
+							<li>Wird als <strong>wrapper function</strong> bezeichnet</li>
+							<li>Muss jedes Gruntfile und Gruntplugin haben</li>
+							<li>Funktion nimmt <strong>grunt</strong> Objekt als Argument auf</li>
+							<li>Grunt ruft wrapper Funktion mit <strong>grunt</strong> Objekt als einziges Argument auf</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Grunt Objekt</h2>
+						<ul>							
+							<li><strong>grunt</strong> Objekt stellt Grunt-API dar</li>
+							<li>Wird verwendet zur Interaktion mit Grunt</li>
+							<li>Stellt properties und methods bereit</li>
+							<ul>
+								<li>Konfigurationen laden und aktualisieren via <strong>grunt.config</strong></li>
+								<li>Tasks registrieren und laden via <strong>grunt.task</strong></li>
+								<li>...</li>
+							</ul>
+						</ul>
+					</section>
+					<section>
+						<h2>Funktion grunt.initConfig</h2>
+						<ul>
+							<li><strong>grunt.initConfig</strong> nimmt Objekt entgegen als Ausgangsbasis für weitere Konfiguration</li>
+							<li>Alias für <strong>grunt.config.init</strong></li>
+							<li>Beispielkonfiguration für <strong>JShint</strong></li>
+						</ul>
+							<pre style="background:#fdf6e3;color:#586e75">grunt.initConfig<span style="color:#93a1a1">(</span><span style="color:#268bd2">{</span>
+    jshint: <span style="color:#268bd2">{</span>
+      target1: <span style="color:#268bd2">[</span><span style="color:#269186"><span style="color:#c60000">'</span>Gruntfile.js<span style="color:#c60000">'</span></span><span style="color:#268bd2">]</span>
+    <span style="color:#268bd2">}</span>
+<span style="color:#268bd2">}</span><span style="color:#93a1a1">)</span>;
+</pre>						
+					</section>
+					<section>
+						<h2>Funktion grunt.loadNpmTasks</h2>
+						<ul>
+							<li>Plugins und Tasks laden durch <strong>grunt.loadNpmTasks</strong></li>
+							<li>Beispiel: Laden von Plugin <strong>grunt-contrib-jshint</strong></li>
+						</ul>
+						<pre style="background:#fdf6e3;color:#586e75">grunt.loadNpmTasks<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>grunt-contrib-jshint<span style="color:#c60000">'</span></span><span style="color:#93a1a1">)</span>;
+						</pre>	
+					</section>
+					<section>
+						<h2>Funktion grunt.registerTask</h2>
+						<ul>
+							<li>Registrieren von Tasks via <strong>grunt.registerTask</strong></li>
+							<li>Alias für <strong>grunt.task.registerTask</strong></li>
+							<li>Beispiel 
+							<ul>
+								<li>Default Task definiert</li>
+								<li>Task <strong>jshint</strong> definiert</li>
+								<li><strong>jshint</strong> Task dem Default Task zugewiesen</li>
+								<li>Aufruf von <strong>grunt</strong> ohne Argument (default) und mit Argument <strong>jshint</strong></li>
+							</ul>
+						</ul>
+						<pre style="background:#fdf6e3;color:#586e75">grunt.registerTask<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>default<span style="color:#c60000">'</span></span>, <span style="color:#268bd2">[</span><span style="color:#269186"><span style="color:#c60000">'</span>jshint<span style="color:#c60000">'</span></span><span style="color:#268bd2">]</span><span style="color:#93a1a1">)</span>;</pre>
+					</section>
+				</section>
+<!------------------------------------------------------------------------------------------------------------------------>
+<!-- Advanced Gruntfile 																								-->
+<!------------------------------------------------------------------------------------------------------------------------>
+				<section>
+					<section fullscreen-img="img/master.gif">
+						<h1 class="fullscreen">Mastering Gruntfile</h1>
+					</section>
+					<section>
+						<h2>Alles in <strong>Gruntfile.js</strong> zu packen ist problematisch</h2>
+						<img src="img/large-gruntfile.png"/>
+					</section>
+					<section>
+						<h2>Existieren Techniken für DRY und Modularisierung</h2>
+					</section>
+					<section>
+						<h2>Variablen verwenden</h2>
+						<pre style="background:#fdf6e3;color:#586e75"><span style="color:#a57800"><span style="color:#859900">module</span>.<span style="color:#a57800">exports</span> <span style="color:#859900">=</span> <span style="color:#268bd2">function</span> <span style="color:#93a1a1">(</span>grunt)</span> <span style="color:#268bd2">{</span>
+  <span style="color:#268bd2">var</span> globalConfig <span style="color:#859900">=</span> <span style="color:#268bd2">{</span>
+    src: <span style="color:#269186"><span style="color:#c60000">'</span>src<span style="color:#c60000">'</span></span>,
+    dest: <span style="color:#269186"><span style="color:#c60000">'</span>dev<span style="color:#c60000">'</span></span>
+  <span style="color:#268bd2">}</span>;
+
+  grunt.initConfig<span style="color:#93a1a1">(</span><span style="color:#268bd2">{</span>
+    globalConfig: globalConfig,
+    compass: <span style="color:#268bd2">{</span>
+      options: <span style="color:#268bd2">{</span>
+        sassDir: <span style="color:#269186"><span style="color:#c60000">'</span>&lt;%= globalConfig.src  %>/styles<span style="color:#c60000">'</span></span>,
+        cssDir: <span style="color:#269186"><span style="color:#c60000">'</span>&lt;%= globalConfig.dest %><span style="color:#c60000">'</span></span>
+      <span style="color:#268bd2">}</span>,
+      dev: <span style="color:#268bd2">{</span><span style="color:#268bd2">}</span>
+    <span style="color:#268bd2">}</span>
+<span style="color:#93a1a1">// ...</span>
+</pre>
+					</section>
+					<section>
+						<h2>Task Aliase definieren</h2>
+						<pre style="background:#fdf6e3;color:#586e75">  grunt.registerTask<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>js<span style="color:#c60000">'</span></span>, <span style="color:#268bd2">[</span><span style="color:#269186"><span style="color:#c60000">'</span>jshint<span style="color:#c60000">'</span></span>, <span style="color:#269186"><span style="color:#c60000">'</span>concat<span style="color:#c60000">'</span></span>, <span style="color:#269186"><span style="color:#c60000">'</span>uglify<span style="color:#c60000">'</span></span><span style="color:#268bd2">]</span><span style="color:#93a1a1">)</span>;
+  grunt.registerTask<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>css<span style="color:#c60000">'</span></span>, <span style="color:#268bd2">[</span><span style="color:#269186"><span style="color:#c60000">'</span>sass:dev<span style="color:#c60000">'</span></span><span style="color:#268bd2">]</span><span style="color:#93a1a1">)</span>;
+  grunt.registerTask<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>html<span style="color:#c60000">'</span></span>, <span style="color:#268bd2">[</span><span style="color:#269186"><span style="color:#c60000">'</span>slim<span style="color:#c60000">'</span></span>, <span style="color:#269186"><span style="color:#c60000">'</span>htmlmin<span style="color:#c60000">'</span></span><span style="color:#268bd2">]</span><span style="color:#93a1a1">)</span>;
+  grunt.registerTask<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>default<span style="color:#c60000">'</span></span>, <span style="color:#268bd2">[</span><span style="color:#269186"><span style="color:#c60000">'</span>js<span style="color:#c60000">'</span></span>, <span style="color:#269186"><span style="color:#c60000">'</span>css<span style="color:#c60000">'</span></span>, <span style="color:#269186"><span style="color:#c60000">'</span>html<span style="color:#c60000">'</span></span>, <span style="color:#269186"><span style="color:#c60000">'</span>copy<span style="color:#c60000">'</span></span>, <span style="color:#269186"><span style="color:#c60000">'</span>watch<span style="color:#c60000">'</span></span><span style="color:#268bd2">]</span><span style="color:#93a1a1">)</span>;
+</pre>
+					</section>
+					<section>
+						<h2>Doppelte Plugin Definition</h2>
+						<h3>package.json</h3>
+						<pre style="background:#fdf6e3;color:#586e75"><span style="color:#268bd2">{</span> 
+    <span style="color:#269186"><span style="color:#c60000">"</span>devDependencies<span style="color:#c60000">"</span></span>: <span style="color:#268bd2">{</span>
+      <span style="color:#269186"><span style="color:#c60000">"</span>grunt<span style="color:#c60000">"</span></span>: <span style="color:#269186"><span style="color:#c60000">"</span>~0.4.1<span style="color:#c60000">"</span></span>,
+      <span style="color:#269186"><span style="color:#c60000">"</span>grunt-contrib-jshint<span style="color:#c60000">"</span></span>: <span style="color:#269186"><span style="color:#c60000">"</span>~0.6.0<span style="color:#c60000">"</span></span>
+  <span style="color:#268bd2">}</span>
+<span style="color:#268bd2">}</span>
+</pre>
+		
+						<h3>Gruntfile.js</h3>
+						<pre style="background:#fdf6e3;color:#586e75"><span style="color:#a57800"><span style="color:#859900">module</span>.<span style="color:#a57800">exports</span> <span style="color:#859900">=</span> <span style="color:#268bd2">function</span>(grunt)</span> <span style="color:#268bd2">{</span>
+
+	  <span style="color:#93a1a1">// Load the plugin that provides the "jshint" task.</span>
+	  grunt.loadNpmTasks<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>grunt-contrib-jshint<span style="color:#c60000">'</span></span><span style="color:#93a1a1">)</span>;
+
+	</pre>						
+					</section>
+					<section>
+						<h2>Kann man sich die Deklarationen in <strong>Gruntfile</strong> sparen?</h2>
+					</section>
+					<section fullscreen-img="img/awesome2.gif">
+						<h2 class="fullscreen">Yep, möglich durch Plugin</h2>
+						<div class="fullscreen">
+							<ul>
+								<li>Plugin <a href="https://github.com/sindresorhus/load-grunt-tasks">load-grunt-tasks</a></li>
+								<li>Zieht Informationen aus <strong>package.json</strong></li>
+							</ul>
+						</div>
+					</section>
+					<section>
+						<h2>Setup <strong>load-grunt-tasks</strong></h2>
+						<h3>Vorher</h3>
+						<pre style="background:#fdf6e3;color:#586e75"><span style="color:#a57800"><span style="color:#859900">module</span>.<span style="color:#a57800">exports</span> <span style="color:#859900">=</span> <span style="color:#268bd2">function</span> <span style="color:#93a1a1">(</span>grunt)</span> <span style="color:#268bd2">{</span>
+  grunt.loadNpmTasks<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>grunt-shell<span style="color:#c60000">'</span></span><span style="color:#93a1a1">)</span>;
+  grunt.loadNpmTasks<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>grunt-sass<span style="color:#c60000">'</span></span><span style="color:#93a1a1">)</span>;
+  grunt.loadNpmTasks<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>grunt-recess<span style="color:#c60000">'</span></span><span style="color:#93a1a1">)</span>;
+  grunt.loadNpmTasks<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>grunt-sizediff<span style="color:#c60000">'</span></span><span style="color:#93a1a1">)</span>;
+  grunt.loadNpmTasks<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>grunt-svgmin<span style="color:#c60000">'</span></span><span style="color:#93a1a1">)</span>;
+  grunt.loadNpmTasks<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>grunt-styl<span style="color:#c60000">'</span></span><span style="color:#93a1a1">)</span>;
+  grunt.loadNpmTasks<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>grunt-php<span style="color:#c60000">'</span></span><span style="color:#93a1a1">)</span>;
+  grunt.loadNpmTasks<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>grunt-eslint<span style="color:#c60000">'</span></span><span style="color:#93a1a1">)</span>;
+  grunt.loadNpmTasks<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>grunt-concurrent<span style="color:#c60000">'</span></span><span style="color:#93a1a1">)</span>;
+  grunt.loadNpmTasks<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>grunt-bower-requirejs<span style="color:#c60000">'</span></span><span style="color:#93a1a1">)</span>;
+</pre>
+						<h3>Nachher</h3>
+						<pre style="background:#fdf6e3;color:#586e75"><span style="color:#a57800"><span style="color:#859900">module</span>.<span style="color:#a57800">exports</span> <span style="color:#859900">=</span> <span style="color:#268bd2">function</span> <span style="color:#93a1a1">(</span>grunt)</span> <span style="color:#268bd2">{</span>
+  require<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>load-grunt-tasks<span style="color:#c60000">'</span></span><span style="color:#93a1a1">)</span><span style="color:#93a1a1">(</span>grunt<span style="color:#93a1a1">)</span>;
+</pre>						
+					</section>
+					<section>
+						<h2><strong>Gruntfile</strong> mit vielen Task-Konfigurationen schnell unübersichtlich</h2>
+					</section>
+					<section>
+						<h2>Kann man Konfigurationen auslagern?</h2>						
+					</section>
+					<section fullscreen-img="img/awesome.gif">
+						<h2 class="fullscreen">Yep, möglich durch Plugin</h2>
+						<div class="fullscreen">
+							<ul>
+								<li>Plugin <a href="https://github.com/creynders/load-grunt-configs">load-grunt-configs</a></li>
+								<li>Auslagern von Konfigurationen in eigene Dateien</li>
+							</ul>
+						</div>
+					</section>
+					<section>
+						<h2><strong>load-grunt-configs</strong> in Action</h2>
+						<pre style="background:#fdf6e3;color:#586e75"><span style="color:#93a1a1">// Gruntfile.js</span>
+<span style="color:#a57800"><span style="color:#859900">module</span>.<span style="color:#a57800">exports</span> <span style="color:#859900">=</span> <span style="color:#268bd2">function</span>(grunt)</span> <span style="color:#268bd2">{</span>
+  require<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>load-grunt-tasks<span style="color:#c60000">'</span></span><span style="color:#93a1a1">)</span><span style="color:#93a1a1">(</span>grunt<span style="color:#93a1a1">)</span>;  
+  <span style="color:#268bd2">var</span> options <span style="color:#859900">=</span> <span style="color:#268bd2">{</span>
+    project: <span style="color:#268bd2">{</span>
+      <span style="color:#93a1a1">// project src/target folders</span>
+      app: <span style="color:#269186"><span style="color:#c60000">'</span>app<span style="color:#c60000">'</span></span>,
+      assets: <span style="color:#269186"><span style="color:#c60000">'</span>&lt;%= project.app %>/assets<span style="color:#c60000">'</span></span>,            
+      src: <span style="color:#269186"><span style="color:#c60000">'</span>&lt;%= project.assets %>/src<span style="color:#c60000">'</span></span>,
+      <span style="color:#93a1a1">// ...</span>
+    <span style="color:#268bd2">}</span>
+    <span style="color:#93a1a1">// ...</span>
+  <span style="color:#268bd2">}</span>;
+  </pre>
+  <pre style="background:#fdf6e3;color:#586e75">
+  <span style="color:#93a1a1">/* Loads the various task registration / configuration files 
+  located at config folder.*/</span>   
+  <span style="color:#268bd2">var</span> configs <span style="color:#859900">=</span> require<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>load-grunt-configs<span style="color:#c60000">'</span></span><span style="color:#93a1a1">)</span><span style="color:#93a1a1">(</span>grunt, options<span style="color:#93a1a1">)</span>;
+  grunt.initConfig<span style="color:#93a1a1">(</span>configs<span style="color:#93a1a1">)</span>;
+
+  grunt.registerTask<span style="color:#93a1a1">(</span><span style="color:#269186"><span style="color:#c60000">'</span>js<span style="color:#c60000">'</span></span>, <span style="color:#268bd2">[</span><span style="color:#269186"><span style="color:#c60000">'</span>jshint<span style="color:#c60000">'</span></span>, <span style="color:#269186"><span style="color:#c60000">'</span>concat<span style="color:#c60000">'</span></span>, <span style="color:#269186"><span style="color:#c60000">'</span>uglify<span style="color:#c60000">'</span></span><span style="color:#268bd2">]</span><span style="color:#93a1a1">)</span>;
+  <span style="color:#93a1a1">// ...  </span>
+<span style="color:#268bd2">}</span>
+</pre>
+					</section>
+					<section>
+						<h2>Ausgelagerte Konfiguration für <strong>JShint</strong></h2>
+						<pre style="background:#fdf6e3;color:#586e75">// config/jshint.json
+{
+     <span style="color:#269186"><span style="color:#c60000">"</span>options<span style="color:#c60000">"</span></span>: {
+        <span style="color:#269186"><span style="color:#c60000">"</span>curly<span style="color:#c60000">"</span></span>: <span style="color:#b58900">true</span>,
+        // ...
+      },
+    <span style="color:#269186"><span style="color:#c60000">"</span>gruntfile<span style="color:#c60000">"</span></span> : {
+        <span style="color:#269186"><span style="color:#c60000">"</span>src<span style="color:#c60000">"</span></span> : <span style="color:#269186"><span style="color:#c60000">"</span>Gruntfile.js<span style="color:#c60000">"</span></span>
+    },
+    <span style="color:#269186"><span style="color:#c60000">"</span>app_js<span style="color:#c60000">"</span></span> : {
+        <span style="color:#269186"><span style="color:#c60000">"</span>src<span style="color:#c60000">"</span></span> : <span style="color:#d31e1e">[</span><span style="color:#269186"><span style="color:#c60000">"</span>&lt;%= project.js %><span style="color:#c60000">"</span></span><span style="color:#d31e1e">]</span>
+    }
+}
+</pre>
+					</section>
+					<section>
+						<h2>Ausgelagerte Konfiguration für <strong>CSS Minify</strong></h2>
+						<pre style="background:#fdf6e3;color:#586e75"><span style="color:#93a1a1">// config/cssmin.js</span>
+module.exports.tasks <span style="color:#859900">=</span> <span style="color:#268bd2">{</span>
+ <span style="color:#269186"><span style="color:#c60000">"</span>cssmin<span style="color:#c60000">"</span></span>: <span style="color:#268bd2">{</span>
+    <span style="color:#269186"><span style="color:#c60000">"</span>add_banner<span style="color:#c60000">"</span></span>: <span style="color:#268bd2">{</span>
+      <span style="color:#269186"><span style="color:#c60000">"</span>options<span style="color:#c60000">"</span></span>: <span style="color:#268bd2">{</span>
+        <span style="color:#269186"><span style="color:#c60000">"</span>banner<span style="color:#c60000">"</span></span>: <span style="color:#269186"><span style="color:#c60000">"</span>/* My minified css file */<span style="color:#c60000">"</span></span>
+      <span style="color:#268bd2">}</span>,
+      <span style="color:#269186"><span style="color:#c60000">"</span>files<span style="color:#c60000">"</span></span>: <span style="color:#268bd2">{</span>
+        <span style="color:#269186"><span style="color:#c60000">"</span>&lt;%= project.css_dist %>/style.css<span style="color:#c60000">"</span></span>: 
+        <span style="color:#268bd2">[</span><span style="color:#269186"><span style="color:#c60000">"</span>&lt;%= project.css_gen %>/**/*.css<span style="color:#c60000">"</span></span><span style="color:#268bd2">]</span>
+      <span style="color:#268bd2">}</span>
+    <span style="color:#268bd2">}</span>
+  <span style="color:#268bd2">}</span>
+<span style="color:#268bd2">}</span>
+</pre>
+					</section>
+				</section>
+<!------------------------------------------------------------------------------------------------------------------------>
+<!-- Überblick Grunt Use Cases																							-->
+<!------------------------------------------------------------------------------------------------------------------------>
+				<section>
+					<section>
+						<h1>Real-world Use Cases</h1>
+					</section>
+					<section>
+						<h2>Statische Analyse und Linting</h2>
+						<h3>Plugin <a href="https://github.com/gruntjs/grunt-contrib-jshint">grunt-contrib-jshint</a></h3>
+					</section>
+					<section>
+						<h2>Dateien von A nach B verschieben</h2>
+						<pre style="background:#fdf6e3;color:#586e75"><span style="color:#93a1a1">// config/copy.js</span>
+module.exports.tasks <span style="color:#859900">=</span> <span style="color:#268bd2">{</span>
+    copy: <span style="color:#268bd2">{</span>
+      html_gen: <span style="color:#268bd2">{</span>
+        files: <span style="color:#268bd2">[</span>
+          <span style="color:#268bd2">{</span>
+            expand: <span style="color:#b58900">true</span>, 
+            flatten: <span style="color:#b58900">true</span>, 
+            filter: <span style="color:#269186"><span style="color:#c60000">"</span>isFile<span style="color:#c60000">"</span></span>, 
+            cwd: <span style="color:#269186"><span style="color:#c60000">"</span>&lt;%= project.src %><span style="color:#c60000">"</span></span>, 
+            src: <span style="color:#268bd2">[</span><span style="color:#269186"><span style="color:#c60000">'</span>**/*.html<span style="color:#c60000">'</span></span><span style="color:#268bd2">]</span>, 
+            dest: <span style="color:#269186"><span style="color:#c60000">'</span>&lt;%= project.gen %>/<span style="color:#c60000">'</span></span><span style="color:#268bd2">}</span>
+        <span style="color:#268bd2">]</span>
+      <span style="color:#268bd2">}</span>
+    <span style="color:#268bd2">}</span>
+<span style="color:#268bd2">}</span>
+</pre>
+					<h3>Plugin <a href="https://github.com/gruntjs/grunt-contrib-copy">grunt-contrib-copy</a></h3>
+					</section>
+					<section>
+						<h2>Dinge konkatinieren</h2>
+						<pre style="background:#fdf6e3;color:#586e75"><span style="color:#93a1a1">// config/concat.js</span>
+module.exports.tasks <span style="color:#859900">=</span> <span style="color:#268bd2">{</span>
+  <span style="color:#269186"><span style="color:#c60000">"</span>concat<span style="color:#c60000">"</span></span>: <span style="color:#268bd2">{</span>
+    <span style="color:#269186"><span style="color:#c60000">"</span>options<span style="color:#c60000">"</span></span>: <span style="color:#268bd2">{</span>
+      <span style="color:#269186"><span style="color:#c60000">"</span>separator<span style="color:#c60000">"</span></span>: <span style="color:#269186"><span style="color:#c60000">'</span>;<span style="color:#c60000">'</span></span>,
+    <span style="color:#268bd2">}</span>,
+    <span style="color:#269186"><span style="color:#c60000">"</span>dist<span style="color:#c60000">"</span></span>: <span style="color:#268bd2">{</span>
+      <span style="color:#269186"><span style="color:#c60000">"</span>src<span style="color:#c60000">"</span></span>: <span style="color:#268bd2">[</span>
+        <span style="color:#269186"><span style="color:#c60000">'</span>src/intro.js<span style="color:#c60000">'</span></span>, 
+        <span style="color:#269186"><span style="color:#c60000">'</span>src/project.js<span style="color:#c60000">'</span></span>, 
+        <span style="color:#269186"><span style="color:#c60000">'</span>src/outro.js<span style="color:#c60000">'</span></span>
+      <span style="color:#268bd2">]</span>,
+      <span style="color:#269186"><span style="color:#c60000">"</span>dest<span style="color:#c60000">"</span></span>: <span style="color:#269186"><span style="color:#c60000">'</span>dist/built.js<span style="color:#c60000">'</span></span>,
+    <span style="color:#268bd2">}</span>,
+  <span style="color:#268bd2">}</span>
+<span style="color:#268bd2">}</span>
+</pre>
+						<h3>Plugin <a href="https://github.com/gruntjs/grunt-contrib-concat">grunt-contrib-concat</a></h3>
+					</section>
+					<section>
+						<h2>Minify Javascript</h2>
+						<pre style="background:#fdf6e3;color:#586e75"><span style="color:#93a1a1">// config/uglify.js</span>
+module.exports.tasks <span style="color:#859900">=</span> <span style="color:#268bd2">{</span>
+    <span style="color:#269186"><span style="color:#c60000">"</span>uglify<span style="color:#c60000">"</span></span>: <span style="color:#268bd2">{</span>
+        <span style="color:#269186"><span style="color:#c60000">"</span>options<span style="color:#c60000">"</span></span>: <span style="color:#268bd2">{</span>
+            <span style="color:#269186"><span style="color:#c60000">"</span>banner<span style="color:#c60000">"</span></span>: <span style="color:#269186"><span style="color:#c60000">"</span>&lt;%= banner %><span style="color:#c60000">"</span></span>
+        <span style="color:#268bd2">}</span>,
+        <span style="color:#269186"><span style="color:#c60000">"</span>dist<span style="color:#c60000">"</span></span>: <span style="color:#268bd2">{</span>
+            <span style="color:#269186"><span style="color:#c60000">"</span>src<span style="color:#c60000">"</span></span>: <span style="color:#269186"><span style="color:#c60000">"</span>&lt;%= project.js_glob %><span style="color:#c60000">"</span></span>,
+            <span style="color:#269186"><span style="color:#c60000">"</span>dest<span style="color:#c60000">"</span></span>: <span style="color:#269186"><span style="color:#c60000">"</span>&lt;%= project.js_dist %>/&lt;%= pkg.name %>.min.js<span style="color:#c60000">"</span></span>
+        <span style="color:#268bd2">}</span>
+    <span style="color:#268bd2">}</span>
+<span style="color:#268bd2">}</span>
+</pre>
+						<h3>Plugin <a href="https://github.com/gruntjs/grunt-contrib-uglify">grunt-contrib-uglify</a>
+					</section>
+					<section>
+						<h2>Transkompilierung (Sass)</h2>
+		<pre style="background:#fdf6e3;color:#586e75"><span style="color:#93a1a1">// config/sass.js</span>
+module.exports.tasks <span style="color:#859900">=</span> <span style="color:#268bd2">{</span>
+  sass: <span style="color:#268bd2">{</span>
+    dev: <span style="color:#268bd2">{</span>
+      options: <span style="color:#268bd2">{</span>
+        style: <span style="color:#269186"><span style="color:#c60000">'</span>expanded<span style="color:#c60000">'</span></span>,
+        banner: <span style="color:#269186"><span style="color:#c60000">'</span>&lt;%= tag.banner %><span style="color:#c60000">'</span></span>,
+        compass: <span style="color:#b58900">true</span>
+      <span style="color:#268bd2">}</span>,
+      files: <span style="color:#268bd2">{</span>
+        <span style="color:#269186"><span style="color:#c60000">'</span>&lt;%= project.css_gen %>/style.css<span style="color:#c60000">'</span></span>: 
+        <span style="color:#269186"><span style="color:#c60000">'</span>&lt;%= project.scss_file %><span style="color:#c60000">'</span></span>
+      <span style="color:#268bd2">}</span>
+    <span style="color:#268bd2">}</span>
+  <span style="color:#268bd2">}</span>
+<span style="color:#268bd2">}</span>
+</pre>
+					<h3>Plugin <a href="https://github.com/gruntjs/grunt-contrib-sass">grunt-contrib-sass</a></h3>
+
+					</section>
+					<section>
+						<h2>Shell Aufrufe</h2>
+			<pre style="background:#fdf6e3;color:#586e75"><span style="color:#93a1a1">// config/patternlab.js</span>
+module.exports <span style="color:#859900">=</span> <span style="color:#268bd2">{</span>
+  patternlab: <span style="color:#268bd2">{</span>
+    options: <span style="color:#268bd2">{</span>
+      stdout: <span style="color:#b58900">true</span>
+    <span style="color:#268bd2">}</span>,
+    command: <span style="color:#269186"><span style="color:#c60000">'</span>php core/builder.php -g<span style="color:#c60000">'</span></span>
+  <span style="color:#268bd2">}</span>
+<span style="color:#268bd2">}</span>;
+</pre>
+						<h3>Plugin <a href="https://github.com/sindresorhus/grunt-shell">grunt-shell</a></h3>
+					</section>
+					<section>
+						<h2>File Watching</h2>
+						<pre style="background:#fdf6e3;color:#586e75"><span style="color:#93a1a1">// config/watch.js</span>
+module.exports.tasks <span style="color:#859900">=</span> <span style="color:#268bd2">{</span>
+    watch: <span style="color:#268bd2">{</span>
+        gruntfile: <span style="color:#268bd2">{</span>
+            files: <span style="color:#269186"><span style="color:#c60000">'</span>&lt;%= jshint.gruntfile.src %><span style="color:#c60000">'</span></span>,
+            tasks: <span style="color:#268bd2">[</span><span style="color:#269186"><span style="color:#c60000">'</span>jshint:gruntfile<span style="color:#c60000">'</span></span><span style="color:#268bd2">]</span>
+        <span style="color:#268bd2">}</span>,
+        app_js: <span style="color:#268bd2">{</span>
+            files: <span style="color:#269186"><span style="color:#c60000">'</span>&lt;%= project.js %><span style="color:#c60000">'</span></span>,
+            tasks: <span style="color:#268bd2">[</span><span style="color:#269186"><span style="color:#c60000">'</span>jshint:app_js<span style="color:#c60000">'</span></span><span style="color:#268bd2">]</span>
+        <span style="color:#268bd2">}</span>,
+        app_sass: <span style="color:#268bd2">{</span>
+            files: <span style="color:#268bd2">[</span><span style="color:#269186"><span style="color:#c60000">'</span>&lt;%= project.src %>/{,*/}*.{scss,sass}<span style="color:#c60000">'</span></span><span style="color:#268bd2">]</span>,
+            tasks: <span style="color:#268bd2">[</span><span style="color:#269186"><span style="color:#c60000">'</span>sass<span style="color:#c60000">'</span></span><span style="color:#268bd2">]</span>
+        <span style="color:#268bd2">}</span>
+    <span style="color:#268bd2">}</span>
+<span style="color:#268bd2">}</span>
+</pre>
+						<h3>Plugin <a href="https://github.com/gruntjs/grunt-contrib-watch">grunt-contrib-watch</a></h3>
+					</section>					
+					<section>
+						<h2>Testing mit Karma und Jasmine</h2>
+						<h3>Plugin <a href="https://github.com/karma-runner/grunt-karma">grunt-karma</a></h3>
+					</section>
+					
+					<section>
+						<h2>Ausführungsdauer anzeigen</h2>
+						<img src="img/screenshot-time-grunt.png"/>
+						<h3>Plugin <a href="https://github.com/sindresorhus/time-grunt">time-grunt</a></h3>
+					</section>	
+					<section>
+						<h2>Stylischere Ausgaben möglich</h2>
+						<img src="img/screenshot-jshint-stylish.png"/>
+						<h3>Plugin <a href="https://github.com/sindresorhus/jshint-stylish">jshint-stylish</a></h3>
+					</section>	
+					<section>
+						<h2>Ungenutze CSS Styles eliminieren</h2>
+						<h3>Plugin <a href="https://github.com/addyosmani/grunt-uncss">grunt-uncss</a></h3>
+						<blockquote cite="https://github.com/addyosmani/grunt-uncss">
+						&ldquo;A grunt task for removing unused CSS from your projects with UnCSS. Works across multiple files and supports dynamically injected CSS via PhantomJS.&rdquo;
+						</blockquote>		
+						<blockquote cite="https://github.com/addyosmani/grunt-uncss">
+						&ldquo;Taking a multi-page project using Bootstrap with >120KB of CSS down to 11KB..&rdquo;
+						</blockquote>
+					</section>
+					<section fullscreen-img="img/counting.gif">
+						<h2 class="fullscreen">Grunt Plugins</h2>
+						<div class="fullscreen">
+							<ul>
+								<li>4.084 Grunt Plugins and counting</li>								
+								<li>Grunt Plugin <a href="http://gruntjs.com/plugins">Search Interface</a></li>
+								<li>Wann ist man ein Grunt Plugin?</li>
+								<ul>
+									<li>Keyword <strong>gruntplugin</strong> angegeben</li>
+									<li>Publiziert als <strong>npm</strong></li>
+								</ul>								
+							</ul>
+						</div>
+					</section>
+				</section>
+<!------------------------------------------------------------------------------------------------------------------------>
+<!-- In eigener Sache
+<!------------------------------------------------------------------------------------------------------------------------>
+				<section>
+					<section>
+						<h1>In eigener Sache</h1>
+					</section>
+					<section fullscreen-img="img/screenshot-my-blog.png">
+						<h2 class="fullscreen">Eigener Blog am aufbauen</h2>
+						<div class="fullscreen">
+							<ul>
+								<li>Auf <a href="http://doppelmutzi.github.io/">Github (http://doppelmutzi.github.io/)</a> gehostet</li>
+								<li>Work in progress</li>
+								<li>Erster Blogeintrag zu Grunt bereits gepublished</li>
+							</ul>
+						</div>
+					</section>
+					<section fullscreen-img="img/screenshot-github-seed-webdev.png">
+						<h2 class="fullscreen">Seed Projekt für Frontend-Entwicklung</h2>
+						<div class="fullscreen">
+							<ul>
+								<li><a href="https://github.com/doppelmutzi/seed-webdev">https://github.com/doppelmutzi/seed-webdev</a></li>
+								<li>Work in progress (Roadmap in Readme.md)</li>
+								<li>Boilderplate-Projekt für</li>
+								<ul>
+									<li>Grunt-Workflow (file watching, auto reload, etc.)</li>
+									<li>Sass/Compass und Slim</li>
+								</ul>
+							</ul>
+						</div>
+					</section>
+					<section fullscreen-img="img/screenshot-gitlab-angular.png">
+						<h2 class="fullscreen">Gitlab Projekt zum Lernen von Angular.js</h2>
+						<div class="fullscreen">
+							<ul>
+								<li><a href="https://git.netpioneer.de/sweber/ng-shop/">https://git.netpioneer.de/sweber/ng-shop/</a></li>
+								<li>Grunt-Projekt für Angular.js Entwicklung mit Karma und Jasmin</li>
+							</ul>
+						</div>						
+					</section>
+					<section fullscreen-img="img/screenshot-gitlab-patternlab.png">
+						<h2 class="fullscreen">Gitlab Projekt für Aurubis</h2>
+						<div class="fullscreen">
+							<ul>
+								<li>Living Styleguide durch <a href="http://patternlab.io">Pattern Lab</a></li>
+								<li><a href="https://git.netpioneer.de/sweber/aurubis-living-styleguide">https://git.netpioneer.de/sweber/aurubis-living-styleguide</a></li>
+								<li>Grunt-Workflow</li>
+								<ul>
+									<li>Pattern Lab (PHP framework) wird via <strong>grunt-shell</strong> getriggered</li>
+									<li>Auto Reload bei Entwicklung</li>
+									<li>Sass / Compass</li>
+								</ul>
+							</ul>
+						</div>						
+					</section>
+				</section>	
+<!------------------------------------------------------------------------------------------------------------------------>
+<!-- End Slides Section 																								-->
+<!------------------------------------------------------------------------------------------------------------------------>
+				<section fullscreen-img="img/the-end.gif">
+						
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/fullscreen-img.js' },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

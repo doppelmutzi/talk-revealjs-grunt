@@ -1,0 +1,72 @@
+section strong {
+	font-weight: bold;
+	color: lightblue;
+}
+
+section pre {
+	border-radius: 10px;
+}
+
+ul, li {
+    list-style: none;
+}
+ 
+ul li:before {
+    color: white;
+    content: '» ';
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.fullscreen {
+	background: black;
+	padding: 20px !important;
+	opacity: 0.7;
+
+}
+
+.agenda div {
+	margin-bottom: 20px;
+	padding: 10px;
+}
+
+.agenda h3 {
+	padding-top: 30px;
+	padding-bottom: 0px;
+}
+
+.slides section pre {
+	padding: 10px;
+}
+
+.reveal .slides section img {
+	border: 0;
+	background: 0;
+}
+
+
+td {
+	color: black;
+}
+
+.slide_highlight .highlight_big {
+	font-size: 500%;
+}
+
+.reveal .slides section blockquote {
+	margin-bottom: 30px;
+}
+
+.light-bg li, .light-bg li:before, .light-bg h2, .light-bg h3 {
+	color: black;
+}
+
+section .light-bg img, .reveal .slides section img {
+	box-shadow: none;
+}
+
+.fullscreen {
+	background: black;
+	padding: 20px !important;
+	opacity: 0.7;
+}
